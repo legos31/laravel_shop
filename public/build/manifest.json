@@ -1,0 +1,46 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-f9LaGT_k.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/fonts/Gilroy-Black.woff2": {
+    "file": "assets/Gilroy-Black-nANOiXFK.woff2",
+    "src": "resources/fonts/Gilroy-Black.woff2"
+  },
+  "resources/fonts/Gilroy-Bold.woff2": {
+    "file": "assets/Gilroy-Bold-Dni6zD24.woff2",
+    "src": "resources/fonts/Gilroy-Bold.woff2"
+  },
+  "resources/fonts/Gilroy-Medium.woff2": {
+    "file": "assets/Gilroy-Medium-D1zFn0pQ.woff2",
+    "src": "resources/fonts/Gilroy-Medium.woff2"
+  },
+  "resources/fonts/Gilroy-Regular.woff2": {
+    "file": "assets/Gilroy-Regular-CCqYxGVy.woff2",
+    "src": "resources/fonts/Gilroy-Regular.woff2"
+  },
+  "resources/fonts/Gilroy-SemiBold.woff2": {
+    "file": "assets/Gilroy-SemiBold-BaPzwWK_.woff2",
+    "src": "resources/fonts/Gilroy-SemiBold.woff2"
+  },
+  "resources/images/icons/checked-white.svg": {
+    "file": "assets/checked-white-Ct4DpFv9.svg",
+    "src": "resources/images/icons/checked-white.svg"
+  },
+  "resources/images/icons/dropdown-arrow.svg": {
+    "file": "assets/dropdown-arrow-nNkwz73L.svg",
+    "src": "resources/images/icons/dropdown-arrow.svg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-BGq5vaUf.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/sass/main.sass": {
+    "file": "assets/main-B5xGAmci.css",
+    "src": "resources/sass/main.sass",
+    "isEntry": true
+  }
+}
