@@ -10,7 +10,11 @@
 ## Installation
 
 php artisan storage:link
+composer require barryvdh/laravel-debugbar --dev
 
+composer require --dev barryvdh/laravel-ide-helper
+
+composer require laravel/telescope --dev
 
 ## Deploy
 
