@@ -11,8 +11,8 @@
             value="{{old('email')}}"
             placeholder="E-mail"
             required="true"
+            :isError="$errors->has('email')"
         ></x-forms.text-input>
-
         @error('email')
         <x-forms.error>
             {{$message}}

@@ -15,7 +15,6 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "*",
-        "barryvdh/laravel-ide-helper": "^2.15",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "laravel/telescope": "^5.0",
@@ -29,7 +28,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+
+        "files":
+        [
+            "app/support/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

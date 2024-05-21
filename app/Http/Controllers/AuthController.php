@@ -21,7 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    public function index(): Factory|View|Application
+    public function index(): Factory|View|Application|string
     {
 
         return view('auth.index');
@@ -72,16 +72,17 @@ class AuthController extends Controller
         return view('auth.forgot-password');
     }
 
-    public function forgotPassword (ForgotPasswordFormRequest $request) :RedirectResponse
-    {
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['message' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
-    }
+//    public function forgotPassword (ForgotPasswordFormRequest $request) :RedirectResponse
+//    {
+//        $status = Password::sendResetLink(
+//            $request->only('email')
+//        );
+//
+//        return $status === Password::RESET_LINK_SENT
+//            ? back()->with(['messages' => __($status)])
+//            : back()->withErrors(['messages' => __($status)]);
+//
+//    }
 
     public function reset (string $token) :Factory|View|Application
     {
@@ -101,9 +102,11 @@ class AuthController extends Controller
             }
         );
 
-        return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('message', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
+        if ($status === Password::PASSWORD_RESET){
+            flash()->alert($status);
+            return redirect()->route('login');
+        }
+        return back()->withErrors(['email' => [__($status)]]);
     }
 
     public function github(): \Symfony\Component\HttpFoundation\RedirectResponse|RedirectResponse
@@ -115,10 +118,11 @@ class AuthController extends Controller
     {
         $githubUser = Socialite::driver('github')->user();
 
+
         $user = User::query()->updateOrCreate([
             'github_id' => $githubUser->id,
         ], [
-            'name' => $githubUser->nickname,
+            'name' => $githubUser->nickname ?? $githubUser->email,
             'email' => $githubUser->email,
             'password' => bcrypt(str()->random(10))
         ]);

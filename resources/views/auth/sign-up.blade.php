@@ -25,6 +25,7 @@
             placeholder="E-mail"
             value="{{old('email')}}"
             required="true"
+            :isError="$errors->has('email')"
         ></x-forms.text-input>
 
         <x-forms.text-input
@@ -32,6 +33,7 @@
             type="password"
             placeholder="Пароль"
             required="true"
+            :isError="$errors->has('password')"
         ></x-forms.text-input>
 
         @error('password')
@@ -45,6 +47,7 @@
             type="password"
             placeholder="Повторите пароль"
             required="true"
+            :isError="$errors->has('password_confirmation')"
         ></x-forms.text-input>
 
         @error('password_confirmation')

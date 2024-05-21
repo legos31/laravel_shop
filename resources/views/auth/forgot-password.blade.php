@@ -14,7 +14,7 @@
 
         @error('email')
         <x-forms.error>
-            {{$messges}}
+            {{$message}}
         </x-forms.error>
         @enderror
 

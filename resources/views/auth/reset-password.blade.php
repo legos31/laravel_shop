@@ -53,7 +53,7 @@
         </x-slot:buttons>
 
         <x-forms.primary-batton>
-            Сбросить пароль
+            Обновить пароль
         </x-forms.primary-batton>
 
     </x-forms.auth-forms>
