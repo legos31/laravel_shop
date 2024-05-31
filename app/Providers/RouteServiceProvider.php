@@ -2,12 +2,16 @@
 
 namespace App\Providers;
 
-use http\Client\Response;
+use App\Contracts\RouteRegistrar;
+use App\Routing\AppRegistrar;
+use App\Routing\AuthRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Exception\RuntimeException;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,6 +33,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     // protected $namespace = 'App\\Http\\Controllers';
 
+    protected array $registrars = [
+        AppRegistrar::class,
+        AuthRegistrar::class
+    ];
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -37,17 +45,20 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-
-        $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
+        $this->routes(function (Registrar $router) {
+           $this->mapRoutes($router, $this->registrars);
         });
+
+//        $this->routes(function () {
+//            Route::prefix('api')
+//                ->middleware('api')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/api.php'));
+//
+//            Route::middleware('web')
+//                ->namespace($this->namespace)
+//                ->group(base_path('routes/web.php'));
+//        });
     }
 
     /**
@@ -72,4 +83,18 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
     }
+
+    protected function mapRoutes(Registrar $router, array $registrars) :void
+    {
+        foreach ($registrars as $registrar) {
+            if (! class_exists($registrar) || ! is_subclass_of($registrar, RouteRegistrar::class)) {
+                throw new RuntimeException('It is not valid routes class');
+            }
+
+
+            (new $registrar)->map($router);
+        }
+    }
+
+
 }
