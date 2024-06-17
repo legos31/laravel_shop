@@ -37,6 +37,9 @@ class RefreshCommand extends Command
         $this->call('migrate:fresh', [
             '--seed' => true
         ]);
+        $this->call('cache:clear');
+
+        $this->call('queue:work');
 
     }
 }

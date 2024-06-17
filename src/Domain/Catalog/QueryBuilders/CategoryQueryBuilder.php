@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 class CategoryQueryBuilder extends Builder
 {
     public function homePage () {
-        return $this->where('on_home_page' , true)->orderBy('sorting')->limit(6);
+        return $this->select(['id', 'title', 'slug'])
+        ->where('on_home_page' , true)->orderBy('sorting')->limit(6);
     }
 }

@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Laravel\Socialite\Facades\Socialite;
+use Support\SessionRegenerator;
 
 
 class SignInController extends Controller
@@ -31,20 +32,23 @@ class SignInController extends Controller
     public function handle (SignInFormRequest $request) :RedirectResponse
     {
 
+
         if (!Auth::attempt($request->validated())) {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ])->onlyInput('email');
         }
+
+
         $request->session()->regenerate();
+
         return redirect()->intended(route('home'));
     }
 
     public function logout (Request $request) :RedirectResponse
     {
-        auth()->logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
+        SessionRegenerator::run(fn() => auth()->logout());
+
 
         return redirect(route('home'));
     }

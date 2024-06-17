@@ -5,13 +5,17 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
+        "laravel/scout": "*",
         "laravel/socialite": "^5.12",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "moonshine/moonshine": "*",
+        "spatie/laravel-model-states": "*",
+        "spatie/laravel-view-models": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "*",

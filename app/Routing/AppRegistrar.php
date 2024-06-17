@@ -16,5 +16,6 @@ class AppRegistrar implements RouteRegistrar
         Route::middleware('web')->group(function() {
             Route::get('/', HomeController::class)->name('home');
         });
+
     }
 }

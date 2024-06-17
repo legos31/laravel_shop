@@ -17,10 +17,11 @@ return new class extends Migration
 
 
     public function down() :void
-    {
-        if (!app()->isProduction()) {
-            Schema::dropIfExists('{{ table }}');
-            //
-        };
-    }
+        {
+            if (!app()->isProduction()) {
+                Schema::table('{{ table }}', function (Blueprint $table) {
+
+                });
+            }
+        }
 };

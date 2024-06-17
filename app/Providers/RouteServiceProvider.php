@@ -5,12 +5,15 @@ namespace App\Providers;
 use App\Contracts\RouteRegistrar;
 use App\Routing\AppRegistrar;
 use App\Routing\AuthRegistrar;
+use App\Routing\CartRegistrar;
+use App\Routing\CatalogRegistrar;
+use App\Routing\OrderRegistrar;
+use App\Routing\ProductRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Exception\RuntimeException;
 
 class RouteServiceProvider extends ServiceProvider
@@ -35,7 +38,11 @@ class RouteServiceProvider extends ServiceProvider
 
     protected array $registrars = [
         AppRegistrar::class,
-        AuthRegistrar::class
+        AuthRegistrar::class,
+        CatalogRegistrar::class,
+        ProductRegistrar::class,
+        CartRegistrar::class,
+        OrderRegistrar::class
     ];
     /**
      * Define your route model bindings, pattern filters, etc.

@@ -11,12 +11,16 @@ class NewUserDTO
 {
     use Makeable;
 
-    public function __construct(
-        public string $name,
-        public string $email,
-        public string $password,
-    )
+    public string $name;
+    public string $email;
+    public string $password;
+
+    public function __construct(array $user)
     {
+        $this->name = $user['name'];
+        $this->email = $user['email'];
+        $this->password = $user['password'];
+
     }
 
     public static function fromRequest(Request $request)

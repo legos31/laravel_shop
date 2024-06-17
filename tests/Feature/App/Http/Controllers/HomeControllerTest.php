@@ -4,15 +4,15 @@
 namespace App\Http\Controllers;
 
 
-use Database\Factories\BrandFactory;
-use Database\Factories\CategoryFactory;
+use Database\Factories\Domain\Catalog\Models\BrandFactory;
+use Database\Factories\Domain\Catalog\Models\CategoryFactory;
 use Database\Factories\ProductFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class HomeControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
     /** @test */
     public function it_success_responce()
     {
